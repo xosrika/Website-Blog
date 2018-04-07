@@ -34,11 +34,7 @@
 		#navbar .rightBar{
 				float: right;
 				
-		}
-
-		#navbar li:last-child {
-				border-right: none;
-		}
+		}	
 
 		#navbar li a {
 				display: block;
@@ -104,8 +100,8 @@
 			<li><a class="leftBar active" href="index.php">Home Page</a></li>
 			<li><a class="leftBar" href="newposts.php">New Posts</a></li>
 	
-			<li><a class="rightBar" href="index.php">Log In</a></li>
-			<li><a class="rightBar" href="index.php">Sign Up</a></li>
+			<li><a class="rightBar" href="login.php">Log In</a></li>
+			<li><a class="rightBar" href="signup.php">Sign Up</a></li>
 		</ul>
 		
     </div> <!-- #navbar -->

@@ -36,10 +36,6 @@
 				
 		}
 
-		#navbar li:last-child {
-				border-right: none;
-		}
-
 		#navbar li a {
 				display: block;
 				color: white;
@@ -93,6 +89,9 @@
     		padding: 0px;
 			margin: 10px;
     		margin-bottom: 15px;
+			background-color: #f2f2f2;
+			border-radius: 7px;
+			border-color: #666666;
 		}
 		
 		.autor{
@@ -100,7 +99,9 @@
 			border-right:1px solid black;
 			border-top:1px solid black;
 			padding: 5px;
-			margin: 0px;			
+			margin: 0px;		
+			border-radius: 3px;
+			border-color: #666666;	
 		}
 
 		.date{
@@ -108,8 +109,15 @@
 			border-left:1px solid black;
 			border-top:1px solid black;
 			padding: 5px;
-			margin: 0px
+			margin: 0px;
+			border-radius: 3px;
+			border-color: #666666;
 		}
+
+		a:visited{
+			color: black;
+		}
+		
 			
 	</style>
     <meta charset="utf-8">
@@ -128,8 +136,8 @@
 			<li><a class="leftBar" href="index.php">Home Page</a></li>
 			<li><a class="leftBar active" href="newposts.php">New Posts</a></li>
 	
-			<li><a class="rightBar" href="index.php">Log In</a></li>
-			<li><a class="rightBar" href="index.php">Sign Up</a></li>
+			<li><a class="rightBar" href="login.php">Log In</a></li>
+			<li><a class="rightBar" href="signup.php">Sign Up</a></li>
 		</ul>
 		
     </div> <!-- #navbar -->
@@ -148,7 +156,7 @@
 			
 			<ul style="list-style-type: none;">
 				<li> 
-					<a href="index.php">	
+					<a href="postpage.php">	
 					<div class="blog group">	
 						<h2 style="padding: 5px;"> Title of the post </h2>			
 
