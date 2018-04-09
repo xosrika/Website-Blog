@@ -1,5 +1,34 @@
 <!DOCTYPE html>
 
+<?php
+	require('config/db.php');
+
+	if(isset($_POST['delete'])){
+        $delete_id = mysqli_real_escape_string($conn, $_POST['delete_id']);
+        
+
+		$query = "DELETE FROM posts where id = {$delete_id};";
+                
+        echo $query;
+        if(mysqli_query($conn, $query)){
+           header("Location: http://localhost/website-blog/newposts.php");
+        } else{
+            echo "ERORR: ".mysqli_error($conn);
+        }
+    }
+
+	$id = mysqli_real_escape_string($conn, $_GET["id"]);
+	$query = "SELECT * FROM posts WHERE id = $id;";
+	$result = mysqli_query($conn, $query);
+
+	$post = mysqli_fetch_assoc($result);
+	var_dump($result);	
+	mysqli_free_result($result);
+
+	mysqli_close($conn);
+	
+?>
+
 <html lang="en-US">
   <head>
 	<style>
@@ -167,31 +196,20 @@
 
 		<div class="column middle">
 			<div class="post_content group">
-                <h1>Title </h1>
+                <h1><?php echo $post['title']; ?></h1>
                 <p> 
-                    Content of the post 
-                    The red-tailed tropicbird (Phaethon rubricauda) is a seabird native to tropical Indi
-                    an and Pacific Oceans. One of three closely related species of tropicbird, it was describe
-                    d by Pieter Boddaert in 1783. Superficially resembling a tern in appearance, it has almost al
-                    l-white plumage with a black mask and a red bill. The sexes have similar plumage. Adults have red ta
-                    l streamers that are about twice their body length, which gives rise to its common name. There are fou
-                    subspecies recognised, though there is evidence there is a clinal change with smaller birds in the north
-                     and larger in the south (and hence no grounds for any subspecies).
-
-                    Nesting takes place in loose colonies on oceanic islands, the nest itself a scrape found on a cliff
-                     face, in a crevice, or 
-                    a sandy beach. A single egg is laid, being incubated by both sexes for about six weeks. The red-ta
-                    iled tropicbird eats
-                    fish, mainly flying fish, and squid, catching them by plunge-diving into the ocean. This bird is con
-                    idered to be a le
-                    st-concern species according to the International Union for Conservation of Nature (IUCN), though it 
-                    is adversely affected by human contact. Rats and feral cats prey on eggs and young at nesting sites.
-
+					<?php echo $post['body']; ?>
                 </p>
 
 
-                <p><strong>Subbmited by: Giorgi</strong> </p>
-				<p><strong>Date: 10/10/2015 </strong></p>
+                <p><strong>Subbmited by:<?php echo ' '.$post['author']; ?></strong> </p>
+				<p><strong>Date: <?php echo ' '.$post['created_at']; ?> </strong></p>
+				<a href=<?php echo "editpost.php?id=".$id;?>>Edit Post</a>
+
+				<form method="POST", action=<?php $_SERVER['PHP_SELF']; ?>>
+					<input type="hidden" name="delete_id", value="<?php echo $post['id'] ?>">   
+					<input type="submit" name="delete" value="Delete">
+				</form>
             </div> <!-- post ontent -->
 
             <div class="comments">

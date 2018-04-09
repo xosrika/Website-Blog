@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 
+<?php
+	require('config/db.php');
+
+	$query = 'SELECT * FROM posts ORDER BY created_at DESC';
+
+	$result = mysqli_query($conn, $query);
+
+	$posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
+	
+	mysqli_free_result($result);
+
+	mysqli_close($conn);
+?>
+
 <html lang="en-US">
   <head>
 	<style>
@@ -118,6 +132,9 @@
 			color: black;
 		}
 		
+		a{
+			color: black;
+		}
 			
 	</style>
     <meta charset="utf-8">
@@ -193,6 +210,20 @@
 						<p class="date">Date: 10/10/2018</p>		
 					</div>	
 				</li>
+
+				<?php foreach($posts as $post): ?>
+				<li>	
+					<a href=<?php echo "postpage.php?id=".$post['id'];?>>	
+					<div class="blog group">	
+						<h2 style="padding: 5px;"><?php echo $post['title']; ?></h2>			
+
+						<p class="autor">Subbmited by:<?php echo ' '.$post['author']; ?></p>
+						<p class="date">Date:<?php echo ' '.$post['created_at']; ?></p>		
+					</div>
+					</a>	
+				</li>
+				<?php endforeach; ?>
+				 
 			</ul>
 
 
